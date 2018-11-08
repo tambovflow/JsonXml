@@ -12,10 +12,9 @@ public class Parse {
     private  String reset = "";
 
     public  String toJson(Object object) {
-
-        StringBuilder sb = new StringBuilder();
         String name = null;
-        String value = null;
+        Object value = null;
+        StringBuilder sb = new StringBuilder();
         String d = ",";
         int i =0;
         Class<?> cl = object.getClass();
@@ -24,11 +23,13 @@ public class Parse {
         sb.append("{\n");
 
         for(Field field : fields){
-            field.setAccessible(true);
             if(++i ==fields.length) d= "";
             try {
                 name = field.getName();
-                value = field.get(object).toString();
+                if(!field.isAccessible()){
+                    field.setAccessible(true);
+                }
+                value = field.get(object);
             } catch (IllegalAccessException ex){
                 ex.fillInStackTrace();
             }
