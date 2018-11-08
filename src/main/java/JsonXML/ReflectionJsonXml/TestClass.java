@@ -1,9 +1,9 @@
 package JsonXML.ReflectionJsonXml;
 
 public class TestClass {
-    private int f = 2;
+    private int f;
     private String st;
-    private boolean t = true;
+    private boolean t;
     public String string = "ads";
     int m = 1;
 }

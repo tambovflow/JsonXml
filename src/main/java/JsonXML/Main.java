@@ -22,6 +22,7 @@ public class Main {
         System.out.println(new Parse().toXmlWithColor(personList.get(1)));
         System.out.println(new Parse().toJsonWithColor(personList.get(11)));
         System.out.println(new Parse().toJsonWithColor(t));
+        System.out.println(new Parse().toXmlWithColor(t));
 
         bw1.write(new Parse().toJson(personList));
         bw2.write(new Parse().toXml(personList));

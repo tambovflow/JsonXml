@@ -13,4 +13,25 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
+    <build>
+        <pluginManagement>
+            <plugins>
+
+                <plugin>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>3.0.2</version>
+                    <configuration>
+                        <archive>
+                            <manifest>
+                                <addClasspath>true</addClasspath>
+                                <classpathPrefix>lib/</classpathPrefix>
+                                <mainClass>com.aca.App</mainClass>
+                            </manifest>
+                        </archive>
+                    </configuration>
+                </plugin>
+
+            </plugins>
+        </pluginManagement>
+    </build>
 </project>
