@@ -25,7 +25,7 @@
                             <manifest>
                                 <addClasspath>true</addClasspath>
                                 <classpathPrefix>lib/</classpathPrefix>
-                                <mainClass>com.aca.App</mainClass>
+                                <mainClass>JsonXML.Main</mainClass>
                             </manifest>
                         </archive>
                     </configuration>

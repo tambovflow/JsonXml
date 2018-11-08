@@ -15,9 +15,8 @@ public class Main {
         ReadFile<Person> rf = new ReadFile<Person>();
         List<Person> personList = rf.createPersonList();
         TestClass t = new TestClass();
-        String path  = new File("").getAbsolutePath();
-        BufferedWriter bw1 = new BufferedWriter(new FileWriter(new File(path + "/src/main/resources/json.json")));
-        BufferedWriter bw2 = new BufferedWriter(new FileWriter(new File(path + "/src/main/resources/xml.xml")));
+        BufferedWriter bw1 = new BufferedWriter(new FileWriter(new File( "src/main/resources/json.json")));
+        BufferedWriter bw2 = new BufferedWriter(new FileWriter(new File( "src/main/resources/xml.xml")));
 
         System.out.println(new Parse().toXmlWithColor(personList.get(1)));
         System.out.println(new Parse().toJsonWithColor(personList.get(11)));
