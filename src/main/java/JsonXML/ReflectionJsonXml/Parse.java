@@ -70,16 +70,19 @@ public class Parse {
     public String toXml(Object object) {
         StringBuilder sb = new StringBuilder();
         String name = null;
-        String value = null;
+        Object value = null;
         Class<?> cl = object.getClass();
         Field[] fields = cl.getDeclaredFields();
 
         sb.append("<" + red + cl.getSimpleName() + reset + ">\n");
         for(Field field : fields){
-            field.setAccessible(true);
+
             try {
                 name = field.getName();
-                value = field.get(object).toString();
+                if(!field.isAccessible()){
+                    field.setAccessible(true);
+                }
+                value = field.get(object);
             } catch (IllegalAccessException ex){
                 ex.fillInStackTrace();
             }
