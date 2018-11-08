@@ -11,8 +11,7 @@ public class ReadFile <T>{
         BufferedReader br = null;
         String string;
         try{
-            String path = new File("").getAbsolutePath();
-            InputStream is = new FileInputStream(path + "/src/main/resources/table.csv");
+            InputStream is = new FileInputStream("src/main/resources/table.csv");
             InputStreamReader isr = new InputStreamReader(is);
             br = new BufferedReader(isr);
 
