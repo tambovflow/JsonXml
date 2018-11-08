@@ -4,6 +4,7 @@ import JsonXML.FileReader.Person;
 import JsonXML.FileReader.ReadFile;
 import JsonXML.ReflectionJsonXml.Parse;
 import JsonXML.ReflectionJsonXml.TestClass;
+import JsonXML.ReflectionJsonXml.TestClass2;
 
 import java.io.*;
 import java.util.*;
@@ -13,7 +14,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         ReadFile<Person> rf = new ReadFile<Person>();
         List<Person> personList = rf.createPersonList();
-        TestClass t = new TestClass();
+        TestClass2 t = new TestClass2();
         BufferedWriter bw1 = new BufferedWriter(new FileWriter(new File( "src/main/resources/json.json"))); //output JSON file
         BufferedWriter bw2 = new BufferedWriter(new FileWriter(new File( "src/main/resources/xml.xml")));   //output XML file
 

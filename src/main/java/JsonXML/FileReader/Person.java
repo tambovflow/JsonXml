@@ -1,6 +1,9 @@
 package JsonXML.FileReader;
 
 import JsonXML.Annotation.HideField;
+import JsonXML.Annotation.IsClass;
+import JsonXML.ReflectionJsonXml.TestClass;
+import JsonXML.ReflectionJsonXml.TestClass2;
 
 public class Person {
     private int id;
@@ -11,6 +14,8 @@ public class Person {
     private int year;
     @HideField
     private String company;
+    @IsClass
+    TestClass2 testClass = new TestClass2();
     private String street;
     private String build;
     private String apt;
