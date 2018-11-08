@@ -3,7 +3,7 @@ package JsonXML.FileReader;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-
+                            //класс для чтения данных с файла table.csv и записи в Person.class чисто для теста
 public class ReadFile <T>{
 
     public List<T> createPersonList(){

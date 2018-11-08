@@ -1,5 +1,6 @@
 package JsonXML.ReflectionJsonXml;
 
+import JsonXML.Annotation.HideField;
 import JsonXML.Color.MyColor;
 import java.lang.reflect.Field;
 import java.util.Collection;
@@ -24,6 +25,7 @@ public class Parse {
 
         for(Field field : fields){
             if(++i ==fields.length) d= "";
+            if(field.isAnnotationPresent(HideField.class)) continue;
             try {
                 name = field.getName();
                 if(!field.isAccessible()){
@@ -76,7 +78,7 @@ public class Parse {
 
         sb.append("<" + red + cl.getSimpleName() + reset + ">\n");
         for(Field field : fields){
-
+        if(field.isAnnotationPresent(HideField.class)) continue;
             try {
                 name = field.getName();
                 if(!field.isAccessible()){

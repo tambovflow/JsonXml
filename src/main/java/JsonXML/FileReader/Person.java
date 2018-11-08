@@ -1,11 +1,15 @@
 package JsonXML.FileReader;
 
+import JsonXML.Annotation.HideField;
+
 public class Person {
     private int id;
     private String serial;
     private String post;
+    @HideField
     private String code;
     private int year;
+    @HideField
     private String company;
     private String street;
     private String build;
