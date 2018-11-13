@@ -22,7 +22,7 @@ public class Main {
         System.out.println(new Parse().toXmlWithColor(t));
 
 
-        bw1.write( new Parse().toJson(personList)); //write all class from collections to the file (without color)
+        bw1.write( new Parse().toJson(personList)); //write all class from collections to the file (without color);
         bw2.write( new Parse().toXml(personList));
         bw1.flush(); bw1.close();
         bw2.flush(); bw2.close();

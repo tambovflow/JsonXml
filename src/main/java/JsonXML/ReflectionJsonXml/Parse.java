@@ -1,11 +1,9 @@
 package JsonXML.ReflectionJsonXml;
 
 import JsonXML.Annotation.HideField;
-import JsonXML.Annotation.IsClass;
 import JsonXML.Color.MyColor;
 import java.lang.reflect.Field;
-import java.util.Collection;
-import java.util.Iterator;
+import java.util.*;
 
 public class Parse {
     private  String yellow = "";
@@ -38,15 +36,14 @@ public class Parse {
         String name = null;
         Object value = null;
         String d = ",";
-        Class<?> cl = object.getClass();
-        Field[] fields = cl.getDeclaredFields();
+        Field[] fields = object.getClass().getDeclaredFields();
 
-        sbJson.append("\n" + t + "\""  + green + cl.getSimpleName() + "_" + j++ + reset + "\" : {");
+        sbJson.append("\n" + t + "\""  + green + object.getClass().getSimpleName() + "_" + j++ + reset + "\" : {");
             for (int i = 0; i < fields.length; i++) {
                 if (i == fields.length - 1) {
                     d = "";
                 }
-                else if (fields[i].isAnnotationPresent(HideField.class)) continue;
+                if (fields[i].isAnnotationPresent(HideField.class)) continue;
                 try {
                     fields[i].setAccessible(true);
                     value = fields[i].get(object);
@@ -54,20 +51,22 @@ public class Parse {
                 } catch (IllegalAccessException ex) {
                     ex.fillInStackTrace();
                 }
-                if(Collection.class.isInstance(value)){
-                    Collection o = (Collection) value;
-                    Iterator<Object> iter = o.iterator();
-                    while (iter.hasNext()){
-                        toJson(iter.next(), sbJson);
-                    }
-                    continue;
-                }
-                if (fields[i].isAnnotationPresent(IsClass.class)) {
+                if(value!=null && !(value.getClass().isPrimitive()) && !(value.getClass().toString().contains("class java")) && !(value.getClass().getTypeName().contains("[]"))){
                     t+="\t";
                     toJson(value, sbJson);
                     t="\t";
                     continue;
                 }
+
+                else if(Collection.class.isInstance(value)) {
+                    Collection o = (Collection) value;
+                    Iterator<Object> iter = o.iterator();
+                    while (iter.hasNext()) {
+                        toJson(iter.next(), sbJson);
+                    }
+                    continue;
+                }
+
                 sbJson.append("\n" + t + "\t\"" + green + name + reset + "\" : \"" + yellow + value + reset + "\"" + d);
             }
         sbJson.append("\n" + t + "},");
@@ -99,10 +98,9 @@ public class Parse {
     private StringBuilder toXml(Object object, StringBuilder sbXML) {
         String name = null;
         Object value = null;
-        Class<?> cl = object.getClass();
-        Field[] fields = cl.getDeclaredFields();
+        Field[] fields = object.getClass().getDeclaredFields();
 
-        sbXML.append(t + "<" + red + cl.getSimpleName() + reset + ">\n");
+        sbXML.append(t + "<" + red + object.getClass().getSimpleName() + reset + ">\n");
 
             for (Field field : fields) {
                 if (field.isAnnotationPresent(HideField.class)) continue;
@@ -124,7 +122,7 @@ public class Parse {
                     }
                     continue;
                 }
-                if (field.isAnnotationPresent(IsClass.class)) {
+                if(value!=null && !(value.getClass().isPrimitive()) && !(value.getClass().toString().contains("class java")) && !(value.getClass().getTypeName().contains("[]"))){
                     t += "\t";
                     toXml(value, sbXML);
                     t = "\t";
@@ -132,7 +130,7 @@ public class Parse {
                 }
                 sbXML.append(t  + "\t<" + red + name + reset + ">" + blue + value + reset + "</" + red + name + reset + ">\n");
             }
-        sbXML.append(t + "</" + red + cl.getSimpleName() + reset + ">\n");
+        sbXML.append(t + "</" + red + object.getClass().getSimpleName() + reset + ">\n");
         return sbXML;
     }
 
